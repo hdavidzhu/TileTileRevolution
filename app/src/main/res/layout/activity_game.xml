@@ -8,16 +8,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.dzhu_intrepid.tiletilerevolution.GameActivity">
+    tools:context=".views.GameActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is baller!" />
 
-    <FrameLayout
-        android:id="@+id/game_board_container"
+    <com.example.dzhu_intrepid.tiletilerevolution.views.TileBoardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent">
+    </com.example.dzhu_intrepid.tiletilerevolution.views.TileBoardView>
 
 </LinearLayout>
