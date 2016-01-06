@@ -9,7 +9,7 @@ public class TileBoardPresenter {
     private TileBoard tileBoard;
 
     public TileBoardPresenter() {
-        this.tileBoard = new TileBoard(4);
+        this.tileBoard = new TileBoard(3);
     }
 
     public void clickTile(View view, int position, long id) {

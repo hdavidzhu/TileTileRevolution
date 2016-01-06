@@ -1,17 +1,21 @@
 package com.example.dzhu_intrepid.tiletilerevolution.models;
 
 public class TilePiece {
-    private Boolean isEmpty;
+    private Boolean empty;
 
     public TilePiece() {
-        this.isEmpty = false;
+        this.empty = false;
     }
 
     public void markEmpty() {
-        this.isEmpty = true;
+        this.empty = true;
     }
 
     public void markFilled() {
-        this.isEmpty = false;
+        this.empty = false;
+    }
+
+    public Boolean isEmpty() {
+        return this.empty;
     }
 }
