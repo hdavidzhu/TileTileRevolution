@@ -9,9 +9,6 @@ import android.view.View;
 
 public class TilePieceView extends View {
 
-    private Rect tileRect;
-    private Paint tilePaint;
-
     public TilePieceView(Context context) {
         super(context);
     }
@@ -21,11 +18,11 @@ public class TilePieceView extends View {
         super.onDraw(canvas);
 
         // Create the rectangle.
-        this.tileRect = new Rect(0,0,100,100);
+        Rect tileRect = new Rect(0, 0, 100, 100);
 
         // Create the paint.
-        this.tilePaint = new Paint();
-        tilePaint.setColor(Color.rgb(255,0,0));
+        Paint tilePaint = new Paint();
+        tilePaint.setColor(Color.rgb(255, 0, 0));
 
         // Draw the tile.
         canvas.drawRect(tileRect, tilePaint);
