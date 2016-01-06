@@ -14,15 +14,31 @@ public class TilePieceView extends View {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int size = MeasureSpec.getSize(widthMeasureSpec);
+        setMeasuredDimension(size, size);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        int padding = 3;
+
         // Create the rectangle.
-        Rect tileRect = new Rect(0, 0, 100, 100);
+        Rect tileRect = new Rect(
+                padding,    // Left.
+                padding,    // Top.
+                this.getWidth() - padding,  // Right.
+                this.getHeight() - padding  // Bottom.
+        );
 
         // Create the paint.
         Paint tilePaint = new Paint();
-        tilePaint.setColor(Color.rgb(255, 0, 0));
+        tilePaint.setColor(Color.rgb(
+                (int) Math.floor(Math.random() * 255),
+                (int) Math.floor(Math.random() * 255),
+                (int) Math.floor(Math.random() * 255)));
 
         // Draw the tile.
         canvas.drawRect(tileRect, tilePaint);

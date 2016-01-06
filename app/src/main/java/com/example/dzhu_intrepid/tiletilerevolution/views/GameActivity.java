@@ -22,6 +22,7 @@ public class GameActivity extends AppCompatActivity {
 
         this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
         this.tileBoardView.setAdapter(new TileBoardAdapter(this));
+        this.tileBoardView.setNumColumns(5);
 
         tileBoardView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

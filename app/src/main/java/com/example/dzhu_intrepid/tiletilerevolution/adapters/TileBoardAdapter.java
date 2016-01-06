@@ -17,7 +17,7 @@ public class TileBoardAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return 15;
     }
 
     @Override
