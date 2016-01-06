@@ -42,13 +42,11 @@ public class TileBoardAdapter extends BaseAdapter {
 
         if (convertView == null) {
             tilePieceView = new TilePieceView(this.context);
-            // TODO: Bind color correctly with the view.
-            tilePieceView.setTileColor(this.getItem(position).getColor());
         } else {
             tilePieceView = (TilePieceView) convertView;
-            tilePieceView.setTileColor(this.getItem(position).getColor());
         }
 
+        tilePieceView.setTilePiece(this.getItem(position));
         return tilePieceView;
     }
 }

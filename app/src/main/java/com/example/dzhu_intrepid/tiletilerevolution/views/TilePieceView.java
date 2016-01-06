@@ -7,13 +7,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
+import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
+
 public class TilePieceView extends View {
 
-    private int tileColor;
+    private TilePiece tilePiece;
 
     public TilePieceView(Context context) {
         super(context);
-        this.tileColor = 0;
+        this.tilePiece = null;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class TilePieceView extends View {
         Paint tilePaint = new Paint();
         tilePaint.setColor(Color.rgb(
                 0,
-                this.tileColor,
+                this.tilePiece.getColor(),
                 0
         ));
 
@@ -48,7 +50,7 @@ public class TilePieceView extends View {
         canvas.drawRect(tileRect, tilePaint);
     }
 
-    public void setTileColor(int color) {
-        this.tileColor = color;
+    public void setTilePiece(TilePiece tilePiece) {
+        this.tilePiece = tilePiece;
     }
 }
