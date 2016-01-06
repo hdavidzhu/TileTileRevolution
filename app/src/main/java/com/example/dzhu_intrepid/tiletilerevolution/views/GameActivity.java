@@ -12,8 +12,8 @@ import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresente
 
 public class GameActivity extends AppCompatActivity {
 
+    public TileBoardPresenter tileBoardPresenter = new TileBoardPresenter();
     private GridView tileBoardView;
-    private TileBoardPresenter tileBoardPresenter = new TileBoardPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class GameActivity extends AppCompatActivity {
 
         this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
         this.tileBoardView.setAdapter(new TileBoardAdapter(this));
-        this.tileBoardView.setNumColumns(5);
+        this.tileBoardView.setNumColumns(tileBoardPresenter.getBoardSize());
 
         tileBoardView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
