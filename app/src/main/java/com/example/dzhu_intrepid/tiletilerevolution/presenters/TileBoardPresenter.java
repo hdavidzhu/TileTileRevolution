@@ -1,21 +1,21 @@
 package com.example.dzhu_intrepid.tiletilerevolution.presenters;
 
-import android.view.View;
-
 import com.example.dzhu_intrepid.tiletilerevolution.models.TileBoard;
+import com.example.dzhu_intrepid.tiletilerevolution.views.GameActivity;
 
 public class TileBoardPresenter {
 
+    private GameActivity gameActivity;
     private TileBoard tileBoard;
 
-    public TileBoardPresenter() {
+    public TileBoardPresenter(GameActivity gameActivity) {
+        this.gameActivity = gameActivity;
         this.tileBoard = new TileBoard(3);
     }
 
-    public void clickTile(View view, int position, long id) {
-        View myView = view;
-        int myPosition = position;
-        long myId = id;
+    public void clickTile(int position) {
+        this.tileBoard.moveTileToEmptySpace(position);
+        this.gameActivity.updateBoard();
     }
 
     public int getBoardDimension() {

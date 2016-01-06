@@ -2,20 +2,23 @@ package com.example.dzhu_intrepid.tiletilerevolution.models;
 
 public class TilePiece {
     private Boolean empty;
+    private int color;
 
     public TilePiece() {
         this.empty = false;
+        this.color = (int) Math.floor(Math.random() * 255);
     }
 
     public void markEmpty() {
         this.empty = true;
-    }
-
-    public void markFilled() {
-        this.empty = false;
+        this.color = 0;
     }
 
     public Boolean isEmpty() {
         return this.empty;
+    }
+
+    public int getColor() {
+        return this.color;
     }
 }

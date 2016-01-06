@@ -12,13 +12,15 @@ import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresente
 
 public class GameActivity extends AppCompatActivity {
 
-    public TileBoardPresenter tileBoardPresenter = new TileBoardPresenter();
+    public TileBoardPresenter tileBoardPresenter;
     private GridView tileBoardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        this.tileBoardPresenter = new TileBoardPresenter(this);
 
         this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
         this.tileBoardView.setAdapter(new TileBoardAdapter(this));
@@ -27,8 +29,12 @@ public class GameActivity extends AppCompatActivity {
         tileBoardView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                tileBoardPresenter.clickTile(view, position, id);
+                tileBoardPresenter.clickTile(position);
             }
         });
+    }
+
+    public void updateBoard() {
+        ((TileBoardAdapter) tileBoardView.getAdapter()).notifyDataSetChanged();
     }
 }

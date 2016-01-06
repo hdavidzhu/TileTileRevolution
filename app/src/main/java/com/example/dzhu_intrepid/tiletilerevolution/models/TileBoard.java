@@ -53,9 +53,9 @@ public class TileBoard {
 
         // Check to see if on edges.
         Boolean isOnLeftEdge = horizonalLocation == 0;
-        Boolean isOnRightEdge = horizonalLocation == this.dimension;
+        Boolean isOnRightEdge = horizonalLocation == this.dimension - 1;
         Boolean isOnTopEdge = verticalLocation == 0;
-        Boolean isOnBottomEdge = verticalLocation == this.dimension;
+        Boolean isOnBottomEdge = verticalLocation == this.dimension - 1;
 
         // Provide references to which positions are available.
         // Set the reference to -1 if not possible.

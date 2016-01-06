@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 import com.example.dzhu_intrepid.tiletilerevolution.views.GameActivity;
 import com.example.dzhu_intrepid.tiletilerevolution.views.TilePieceView;
 
@@ -23,8 +24,10 @@ public class TileBoardAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public TilePiece getItem(int position) {
+        // TODO: Refactor to make a tilePiece easier to retrieve.
+        return ((GameActivity) this.context).tileBoardPresenter
+                .getTileBoard().getTilePiecesGrid().get(position);
     }
 
     @Override
@@ -39,8 +42,11 @@ public class TileBoardAdapter extends BaseAdapter {
 
         if (convertView == null) {
             tilePieceView = new TilePieceView(this.context);
+            // TODO: Bind color correctly with the view.
+            tilePieceView.setTileColor(this.getItem(position).getColor());
         } else {
             tilePieceView = (TilePieceView) convertView;
+            tilePieceView.setTileColor(this.getItem(position).getColor());
         }
 
         return tilePieceView;

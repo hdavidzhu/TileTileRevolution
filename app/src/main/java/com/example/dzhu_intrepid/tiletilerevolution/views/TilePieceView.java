@@ -9,8 +9,11 @@ import android.view.View;
 
 public class TilePieceView extends View {
 
+    private int tileColor;
+
     public TilePieceView(Context context) {
         super(context);
+        this.tileColor = 0;
     }
 
     @Override
@@ -36,11 +39,16 @@ public class TilePieceView extends View {
         // Create the paint.
         Paint tilePaint = new Paint();
         tilePaint.setColor(Color.rgb(
-                (int) Math.floor(Math.random() * 255),
-                (int) Math.floor(Math.random() * 255),
-                (int) Math.floor(Math.random() * 255)));
+                0,
+                this.tileColor,
+                0
+        ));
 
         // Draw the tile.
         canvas.drawRect(tileRect, tilePaint);
+    }
+
+    public void setTileColor(int color) {
+        this.tileColor = color;
     }
 }
