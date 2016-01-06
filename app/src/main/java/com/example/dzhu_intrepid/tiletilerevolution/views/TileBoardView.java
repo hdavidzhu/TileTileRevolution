@@ -44,7 +44,7 @@ public class TileBoardView extends ViewGroup {
         int minPixelDimension = Math.min(currentWidth, currentHeight);
 
         // Grab the board information.
-        int boardSize = tileBoardPresenter.getBoardSize();
+        int boardSize = tileBoardPresenter.getBoardDimension();
         TileBoard board = tileBoardPresenter.getTileBoard();
 
         for (int i = 0; i < boardSize; i++) {

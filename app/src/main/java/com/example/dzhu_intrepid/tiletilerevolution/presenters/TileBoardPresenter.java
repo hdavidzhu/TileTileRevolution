@@ -6,19 +6,20 @@ import com.example.dzhu_intrepid.tiletilerevolution.models.TileBoard;
 
 public class TileBoardPresenter {
 
-    private int boardSize; // TODO: Get this information from the model.
     private TileBoard tileBoard;
 
     public TileBoardPresenter() {
-        this.boardSize = 5;
+        this.tileBoard = new TileBoard(4);
     }
 
     public void clickTile(View view, int position, long id) {
-
+        View myView = view;
+        int myPosition = position;
+        long myId = id;
     }
 
-    public int getBoardSize() {
-        return boardSize;
+    public int getBoardDimension() {
+        return this.tileBoard.getDimension();
     }
 
     public TileBoard getTileBoard() {

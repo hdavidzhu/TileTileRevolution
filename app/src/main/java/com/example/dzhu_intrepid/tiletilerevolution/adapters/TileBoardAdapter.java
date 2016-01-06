@@ -18,7 +18,7 @@ public class TileBoardAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int boardSize = ((GameActivity) this.context).tileBoardPresenter.getBoardSize();
+        int boardSize = ((GameActivity) this.context).tileBoardPresenter.getBoardDimension();
         return  boardSize * boardSize;
     }
 
