@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -14,6 +13,7 @@ import com.example.dzhu_intrepid.tiletilerevolution.R;
 import com.example.dzhu_intrepid.tiletilerevolution.adapters.TileBoardAdapter;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -80,5 +80,16 @@ public class GameActivity extends AppCompatActivity {
 
     public void updateBoard() {
         ((TileBoardAdapter) tileBoardView.getAdapter()).notifyDataSetChanged();
+    }
+
+    // TODO: Not sure if these methods belong here.
+    public byte[] serializeImage(Bitmap bitmapImage) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    public Bitmap deserializeImage(byte[] byteImage) {
+        return BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
     }
 }

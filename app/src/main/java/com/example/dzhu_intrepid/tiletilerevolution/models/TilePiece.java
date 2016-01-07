@@ -3,6 +3,7 @@ package com.example.dzhu_intrepid.tiletilerevolution.models;
 public class TilePiece {
     private Boolean empty;
     private int color;
+    private byte[] image;
 
     public TilePiece() {
         this.empty = false;
@@ -20,5 +21,9 @@ public class TilePiece {
 
     public int getColor() {
         return this.color;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

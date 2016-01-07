@@ -1,7 +1,5 @@
 package com.example.dzhu_intrepid.tiletilerevolution.presenters;
 
-import android.graphics.Bitmap;
-
 import com.example.dzhu_intrepid.tiletilerevolution.models.TileBoard;
 import com.example.dzhu_intrepid.tiletilerevolution.views.GameActivity;
 
@@ -15,9 +13,9 @@ public class TileBoardPresenter {
         this.tileBoard = new TileBoard(3);
     }
 
-    public void applyImagesToTileBoard(Bitmap originalImage, Bitmap[] tiledImages) {
-        // this.tileBoard.setImage();
-        // this.tileBoard.setTileImages();
+    public void applyImagesToTileBoard(byte[] originalImage, byte[][] tiledImages) {
+        this.tileBoard.setImage(originalImage);
+        this.tileBoard.setTileImages(tiledImages);
     }
 
     public void clickTile(int position) {
