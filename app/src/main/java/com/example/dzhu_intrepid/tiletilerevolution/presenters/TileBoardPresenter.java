@@ -1,7 +1,10 @@
 package com.example.dzhu_intrepid.tiletilerevolution.presenters;
 
 import com.example.dzhu_intrepid.tiletilerevolution.models.TileBoard;
+import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 import com.example.dzhu_intrepid.tiletilerevolution.views.GameActivity;
+
+import java.util.List;
 
 public class TileBoardPresenter {
 
@@ -13,21 +16,29 @@ public class TileBoardPresenter {
         this.tileBoard = new TileBoard(3);
     }
 
-    public void applyImagesToTileBoard(byte[] originalImage, byte[][] tiledImages) {
-        this.tileBoard.setImage(originalImage);
-        this.tileBoard.setTileImages(tiledImages);
+    public void onCreate() {
+        // Load local image and convert into byte arrays.
+        this.gameActivity.constructImages("doge.jpg", this.tileBoard.getDimension());
     }
 
-    public void clickTile(int position) {
+    public void onImageLoaded(byte[] originalImage, byte[][] tiledImages) {
+        this.tileBoard.setImage(originalImage);
+        this.tileBoard.setTileImages(tiledImages);
+
+        // Construct our grid when images have been saved.
+        this.gameActivity.buildGrid(this.tileBoard.getDimension());
+    }
+
+    public void onTileClicked(int position) {
         this.tileBoard.moveTileToEmptySpace(position);
         this.gameActivity.updateBoard();
     }
 
-    public int getBoardDimension() {
-        return this.tileBoard.getDimension();
+    public List<TilePiece> getTilePiecesGrid() {
+        return this.tileBoard.getTilePiecesGrid();
     }
 
-    public TileBoard getTileBoard() {
-        return tileBoard;
+    public int getBoardDimension() {
+        return this.tileBoard.getDimension();
     }
 }

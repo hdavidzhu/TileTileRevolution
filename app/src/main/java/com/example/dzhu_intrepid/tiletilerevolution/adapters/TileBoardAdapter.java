@@ -26,8 +26,7 @@ public class TileBoardAdapter extends BaseAdapter {
     @Override
     public TilePiece getItem(int position) {
         // TODO: Refactor to make a tilePiece easier to retrieve.
-        return ((GameActivity) this.context).tileBoardPresenter
-                .getTileBoard().getTilePiecesGrid().get(position);
+        return ((GameActivity) this.context).tileBoardPresenter.getTilePiecesGrid().get(position);
     }
 
     @Override
