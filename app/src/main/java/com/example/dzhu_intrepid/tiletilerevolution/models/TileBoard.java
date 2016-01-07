@@ -8,7 +8,7 @@ public class TileBoard {
 
     private ArrayList<TilePiece> tilePiecesGrid;
     private int dimension;
-    // TODO: Add reference to image here as well.
+    private byte[] image;
 
     public TileBoard(int dimension) {
         this.dimension = dimension;
@@ -78,8 +78,11 @@ public class TileBoard {
         return -1;
     }
 
-
     public int getDimension() {
         return this.dimension;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

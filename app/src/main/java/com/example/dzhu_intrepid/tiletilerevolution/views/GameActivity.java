@@ -29,8 +29,9 @@ public class GameActivity extends AppCompatActivity {
 
         this.tileBoardPresenter = new TileBoardPresenter(this);
 
-        Bitmap image = this.loadImage();
-        Bitmap[] tiledImages = this.splitBitmap(image, tileBoardPresenter.getBoardDimension());
+        Bitmap originalImage = this.loadImage();
+        Bitmap[] tiledImages = this.splitBitmap(originalImage, tileBoardPresenter.getBoardDimension());
+        this.tileBoardPresenter.applyImagesToTileBoard(originalImage, tiledImages);
 
         this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
         this.tileBoardView.setAdapter(new TileBoardAdapter(this));
