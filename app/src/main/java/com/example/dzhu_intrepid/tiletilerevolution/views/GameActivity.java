@@ -1,7 +1,11 @@
 package com.example.dzhu_intrepid.tiletilerevolution.views;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -9,6 +13,9 @@ import android.widget.GridView;
 import com.example.dzhu_intrepid.tiletilerevolution.R;
 import com.example.dzhu_intrepid.tiletilerevolution.adapters.TileBoardAdapter;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -22,6 +29,9 @@ public class GameActivity extends AppCompatActivity {
 
         this.tileBoardPresenter = new TileBoardPresenter(this);
 
+        Bitmap image = this.loadImage();
+        Bitmap[] tiledImages = this.splitBitmap(image, tileBoardPresenter.getBoardDimension());
+
         this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
         this.tileBoardView.setAdapter(new TileBoardAdapter(this));
         this.tileBoardView.setNumColumns(tileBoardPresenter.getBoardDimension());
@@ -32,6 +42,39 @@ public class GameActivity extends AppCompatActivity {
                 tileBoardPresenter.clickTile(position);
             }
         });
+    }
+
+    public Bitmap loadImage() {
+        try {
+            AssetManager assetManager = getAssets();
+            InputStream inputImageStream = assetManager.open("doge.jpg");
+            Bitmap image = BitmapFactory.decodeStream(inputImageStream);
+            inputImageStream.close();
+            return image;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Bitmap[] splitBitmap(Bitmap originalBitmap, int dimension) {
+        if (originalBitmap == null) {
+            return null;
+        }
+
+        int width = originalBitmap.getWidth() / dimension;
+        int height = originalBitmap.getHeight() / dimension;
+        Bitmap[] bitmapHolder = new Bitmap[dimension * dimension];
+
+        for (int yIndex = 0; yIndex < dimension; yIndex++) {
+            for (int xIndex = 0; xIndex < dimension; xIndex++) {
+                bitmapHolder[xIndex * dimension + yIndex] = Bitmap.createBitmap(
+                        originalBitmap, width * xIndex, height * yIndex, width, height);
+            }
+        }
+
+        return bitmapHolder;
     }
 
     public void updateBoard() {
