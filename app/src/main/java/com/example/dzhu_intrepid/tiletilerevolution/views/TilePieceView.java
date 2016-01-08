@@ -52,7 +52,9 @@ public class TilePieceView extends View {
             // Draw the tile.
             canvas.drawRect(tileRect, tilePaint);
         } else {
-            canvas.drawBitmap(this.tileImage, (float) padding, (float) padding, tilePaint);
+            if (!this.tilePiece.isEmpty()) {
+                canvas.drawBitmap(this.tileImage, (float) padding, (float) padding, tilePaint);
+            }
         }
     }
 
