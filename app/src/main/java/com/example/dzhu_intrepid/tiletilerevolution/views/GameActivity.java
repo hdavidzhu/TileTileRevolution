@@ -4,9 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.dzhu_intrepid.tiletilerevolution.R;
 import com.example.dzhu_intrepid.tiletilerevolution.adapters.TileBoardAdapter;
@@ -15,14 +14,12 @@ import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresente
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.File;
-
 import timber.log.Timber;
 
 public class GameActivity extends AppCompatActivity {
 
     public TileBoardPresenter tileBoardPresenter;
-    private GridView tileBoardView;
+    private RecyclerView tileBoardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +52,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void buildGrid(int boardDimension) {
-        this.tileBoardView = (GridView) findViewById(R.id.tile_board_view);
-        this.tileBoardView.setAdapter(new TileBoardAdapter(this));
-        this.tileBoardView.setNumColumns(boardDimension);
-
-        tileBoardView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                tileBoardPresenter.onTileClicked(position);
-            }
-        });
+        this.tileBoardView = (RecyclerView) findViewById(R.id.tile_board_view);
+        this.tileBoardView.setLayoutManager(new GridLayoutManager(this, boardDimension));
+        this.tileBoardView.setAdapter(new TileBoardAdapter(this, this.tileBoardPresenter));
     }
 
     public void updateBoard() {

@@ -1,51 +1,63 @@
 package com.example.dzhu_intrepid.tiletilerevolution.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
-import com.example.dzhu_intrepid.tiletilerevolution.views.GameActivity;
+import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 import com.example.dzhu_intrepid.tiletilerevolution.views.TilePieceView;
 
-public class TileBoardAdapter extends BaseAdapter {
+import java.util.List;
+
+public class TileBoardAdapter extends RecyclerView.Adapter<TilePieceViewHolder> {
 
     private Context context;
+    private TileBoardPresenter tileBoardPresenter;
 
-    public TileBoardAdapter(Context context) {
+    public TileBoardAdapter(Context context, TileBoardPresenter tileBoardPresenter) {
         this.context = context;
+        this.tileBoardPresenter = tileBoardPresenter;
     }
 
     @Override
-    public int getCount() {
-        int boardSize = ((GameActivity) this.context).tileBoardPresenter.getBoardDimension();
+    public TilePieceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        TilePieceView tilePieceView = new TilePieceView(parent.getContext());
+        return new TilePieceViewHolder(tilePieceView, tileBoardPresenter);
+    }
+
+    @Override
+    public void onBindViewHolder(TilePieceViewHolder holder, int position) {
+        // TODO: This is becoming highly coupled.
+        List<TilePiece> tilePieceList = this.tileBoardPresenter.getTilePiecesGrid();
+        holder.bindTilePiece(tilePieceList.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        int boardSize = this.tileBoardPresenter.getBoardDimension();
         return  boardSize * boardSize;
     }
+}
 
-    @Override
-    public TilePiece getItem(int position) {
-        // TODO: Refactor to make a tilePiece easier to retrieve.
-        return ((GameActivity) this.context).tileBoardPresenter.getTilePiecesGrid().get(position);
+class TilePieceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    private TileBoardPresenter tileBoardPresenter;
+
+    public TilePieceViewHolder(View tilePieceView, TileBoardPresenter tileBoardPresenter) {
+        super(tilePieceView);
+        this.tileBoardPresenter = tileBoardPresenter;
+        tilePieceView.setOnClickListener(this);
+    }
+
+    public void bindTilePiece(TilePiece tilePiece) {
+        ((TilePieceView) this.itemView).setTilePiece(tilePiece);
     }
 
     @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        TilePieceView tilePieceView;
-
-        if (convertView == null) {
-            tilePieceView = new TilePieceView(this.context);
-        } else {
-            tilePieceView = (TilePieceView) convertView;
-        }
-
-        tilePieceView.setTilePiece(this.getItem(position));
-        return tilePieceView;
+    public void onClick(View v) {
+        int position = getLayoutPosition();
+        this.tileBoardPresenter.onTileClicked(position);
     }
 }

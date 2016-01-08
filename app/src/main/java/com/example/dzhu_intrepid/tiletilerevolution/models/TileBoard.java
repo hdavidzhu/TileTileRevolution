@@ -24,7 +24,7 @@ public class TileBoard {
 
         for (int i = 0; i < this.dimension * this.dimension; i++) {
             // TODO: Modify the tilePieces to contain the right chunk of image.
-            tilePiecesGrid.add(new TilePiece());
+            tilePiecesGrid.add(new TilePiece(i));
         }
 
         // Set the piece to be empty.

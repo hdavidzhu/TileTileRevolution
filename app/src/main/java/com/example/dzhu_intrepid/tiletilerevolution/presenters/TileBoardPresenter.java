@@ -18,15 +18,13 @@ public class TileBoardPresenter {
 
     public void onCreate() {
         // Load local image and convert into byte arrays.
+        this.gameActivity.buildGrid(this.tileBoard.getDimension());
         this.gameActivity.constructImages("doge.jpg", this.tileBoard.getDimension());
     }
 
     public void onImageLoaded(byte[] originalImage, byte[][] tiledImages) {
         this.tileBoard.setImage(originalImage);
         this.tileBoard.setTileImages(tiledImages);
-
-        // Construct our grid when images have been saved.
-        this.gameActivity.buildGrid(this.tileBoard.getDimension());
     }
 
     public void onTileClicked(int position) {
