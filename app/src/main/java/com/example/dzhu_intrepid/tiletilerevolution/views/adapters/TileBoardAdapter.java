@@ -11,7 +11,7 @@ import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 import com.example.dzhu_intrepid.tiletilerevolution.views.TilePieceView;
 
-public class TileBoardAdapter extends RecyclerView.Adapter<TilePieceViewHolder> {
+public class TileBoardAdapter extends RecyclerView.Adapter<TileBoardAdapter.TilePieceViewHolder> {
 
     private Context context;
     private TileBoardPresenter tileBoardPresenter;
@@ -44,25 +44,27 @@ public class TileBoardAdapter extends RecyclerView.Adapter<TilePieceViewHolder> 
         int boardSize = this.tileBoardPresenter.getBoardDimension();
         return  boardSize * boardSize;
     }
+
+    static class TilePieceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TileBoardPresenter tileBoardPresenter;
+
+        public TilePieceViewHolder(View tilePieceView, TileBoardPresenter tileBoardPresenter) {
+            super(tilePieceView);
+            this.tileBoardPresenter = tileBoardPresenter;
+            tilePieceView.setOnClickListener(this);
+        }
+
+        public void bindTilePiece(TilePiece tilePiece, Bitmap tileImage) {
+            // TODO: Set to the right view in the declaration.
+            ((TilePieceView) this.itemView).setTilePiece(tilePiece);
+            ((TilePieceView) this.itemView).setTileImage(tileImage);
+        }
+
+        @Override
+        public void onClick(View v) {
+            this.tileBoardPresenter.onTileClicked(getLayoutPosition());
+        }
+    }
 }
 
-class TilePieceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-    private TileBoardPresenter tileBoardPresenter;
-
-    public TilePieceViewHolder(View tilePieceView, TileBoardPresenter tileBoardPresenter) {
-        super(tilePieceView);
-        this.tileBoardPresenter = tileBoardPresenter;
-        tilePieceView.setOnClickListener(this);
-    }
-
-    public void bindTilePiece(TilePiece tilePiece, Bitmap tileImage) {
-        ((TilePieceView) this.itemView).setTilePiece(tilePiece);
-        ((TilePieceView) this.itemView).setTileImage(tileImage);
-    }
-
-    @Override
-    public void onClick(View v) {
-        this.tileBoardPresenter.onTileClicked(getLayoutPosition());
-    }
-}

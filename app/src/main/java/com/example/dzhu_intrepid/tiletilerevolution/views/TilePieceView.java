@@ -17,7 +17,6 @@ public class TilePieceView extends View {
 
     public TilePieceView(Context context) {
         super(context);
-        this.tilePiece = null;
     }
 
     @Override
