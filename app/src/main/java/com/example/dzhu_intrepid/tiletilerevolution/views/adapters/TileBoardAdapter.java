@@ -2,7 +2,6 @@ package com.example.dzhu_intrepid.tiletilerevolution.views.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import com.example.dzhu_intrepid.tiletilerevolution.helpers.ImageHelper;
 import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 import com.example.dzhu_intrepid.tiletilerevolution.views.TilePieceView;
-
-import java.util.List;
 
 public class TileBoardAdapter extends RecyclerView.Adapter<TilePieceViewHolder> {
 

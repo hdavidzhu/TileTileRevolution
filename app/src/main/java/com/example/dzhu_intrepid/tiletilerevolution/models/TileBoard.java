@@ -89,7 +89,8 @@ public class TileBoard {
     public void setTileImages(byte[][] images) {
         for (int tileIndex = 0; tileIndex < this.tilePiecesGrid.size(); tileIndex++) {
             TilePiece chosenTile = this.tilePiecesGrid.get(tileIndex);
-            chosenTile.setImage(image);
+            byte[] chosenImage = images[tileIndex];
+            chosenTile.setImage(chosenImage);
         }
     }
 }

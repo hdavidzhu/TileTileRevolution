@@ -25,6 +25,7 @@ public class TileBoardPresenter {
     public void onImageLoaded(byte[] originalImage, byte[][] tiledImages) {
         this.tileBoard.setImage(originalImage);
         this.tileBoard.setTileImages(tiledImages);
+        this.gameActivity.updateBoard();
     }
 
     public void onTileClicked(int position) {
