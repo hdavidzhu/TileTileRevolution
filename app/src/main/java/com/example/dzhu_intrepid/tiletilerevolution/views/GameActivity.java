@@ -8,7 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.dzhu_intrepid.tiletilerevolution.R;
-import com.example.dzhu_intrepid.tiletilerevolution.adapters.TileBoardAdapter;
+import com.example.dzhu_intrepid.tiletilerevolution.views.adapters.TileBoardAdapter;
 import com.example.dzhu_intrepid.tiletilerevolution.helpers.ImageHelper;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 import com.squareup.picasso.Picasso;

@@ -31,6 +31,10 @@ public class TilePiece {
         return this.color;
     }
 
+    public byte[] getImage() {
+        return this.image;
+    }
+
     public void setImage(byte[] image) {
         this.image = image;
     }

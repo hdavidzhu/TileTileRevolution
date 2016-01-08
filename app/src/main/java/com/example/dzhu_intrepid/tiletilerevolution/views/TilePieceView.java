@@ -1,6 +1,7 @@
 package com.example.dzhu_intrepid.tiletilerevolution.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,6 +13,7 @@ import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 public class TilePieceView extends View {
 
     private TilePiece tilePiece;
+    private Bitmap tileImage;
 
     public TilePieceView(Context context) {
         super(context);
@@ -30,14 +32,6 @@ public class TilePieceView extends View {
 
         int padding = 3;
 
-        // Create the rectangle.
-        Rect tileRect = new Rect(
-                padding,    // Left.
-                padding,    // Top.
-                this.getWidth() - padding,  // Right.
-                this.getHeight() - padding  // Bottom.
-        );
-
         // Create the paint.
         Paint tilePaint = new Paint();
         tilePaint.setColor(Color.rgb(
@@ -46,11 +40,27 @@ public class TilePieceView extends View {
                 0
         ));
 
-        // Draw the tile.
-        canvas.drawRect(tileRect, tilePaint);
+        if (this.tileImage == null) {
+            // Create the rectangle.
+            Rect tileRect = new Rect(
+                    padding,    // Left.
+                    padding,    // Top.
+                    this.getWidth() - padding,  // Right.
+                    this.getHeight() - padding  // Bottom.
+            );
+
+            // Draw the tile.
+            canvas.drawRect(tileRect, tilePaint);
+        } else {
+            canvas.drawBitmap(this.tileImage, (float) padding, (float) padding, tilePaint);
+        }
     }
 
     public void setTilePiece(TilePiece tilePiece) {
         this.tilePiece = tilePiece;
+    }
+    
+    public void setTileImage(Bitmap tileImage) {
+        this.tileImage = tileImage;
     }
 }

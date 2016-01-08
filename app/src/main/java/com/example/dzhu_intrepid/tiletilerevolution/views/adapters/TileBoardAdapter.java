@@ -1,10 +1,13 @@
-package com.example.dzhu_intrepid.tiletilerevolution.adapters;
+package com.example.dzhu_intrepid.tiletilerevolution.views.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dzhu_intrepid.tiletilerevolution.helpers.ImageHelper;
 import com.example.dzhu_intrepid.tiletilerevolution.models.TilePiece;
 import com.example.dzhu_intrepid.tiletilerevolution.presenters.TileBoardPresenter;
 import com.example.dzhu_intrepid.tiletilerevolution.views.TilePieceView;
@@ -30,8 +33,13 @@ public class TileBoardAdapter extends RecyclerView.Adapter<TilePieceViewHolder> 
     @Override
     public void onBindViewHolder(TilePieceViewHolder holder, int position) {
         // TODO: This is becoming highly coupled.
-        List<TilePiece> tilePieceList = this.tileBoardPresenter.getTilePiecesGrid();
-        holder.bindTilePiece(tilePieceList.get(position));
+        TilePiece tilePiece = this.tileBoardPresenter.getTilePiecesGrid().get(position);
+
+        Bitmap tileImage = null;
+        if (tilePiece.getImage() != null) {
+            tileImage = ImageHelper.deserializeImage(tilePiece.getImage());
+        }
+        holder.bindTilePiece(tilePiece, tileImage);
     }
 
     @Override
@@ -51,13 +59,13 @@ class TilePieceViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         tilePieceView.setOnClickListener(this);
     }
 
-    public void bindTilePiece(TilePiece tilePiece) {
+    public void bindTilePiece(TilePiece tilePiece, Bitmap tileImage) {
         ((TilePieceView) this.itemView).setTilePiece(tilePiece);
+        ((TilePieceView) this.itemView).setTileImage(tileImage);
     }
 
     @Override
     public void onClick(View v) {
-        int position = getLayoutPosition();
-        this.tileBoardPresenter.onTileClicked(position);
+        this.tileBoardPresenter.onTileClicked(getLayoutPosition());
     }
 }
